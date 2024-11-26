@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aparna Dwivedi - Projects & Images</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Cormorant Garamond', serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(125deg, #000000, #1a1a1a, #0d0d0d, #1f1f1f);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -2;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(30deg, rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(-30deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem 0;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        /* Websites Section - Landscape */
+        .websites-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .website-card {
+            width: 250px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .website-card:hover {
+            transform: scale(1.05);
+        }
+
+        .website-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .website-buttons {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .website-btn {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .website-btn:hover {
+            background: white;
+            color: black;
+        }
+
+        /* Images Section - Portrait Grid */
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .image-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.2);
+            height: 400px;
+        }
+
+        .image-card:hover {
+            transform: scale(1.05);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .image-buttons {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .image-btn {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .image-btn:hover {
+            background: white;
+            color: black;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            color: white;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+        }
+        * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+/* Flexbox container for Flowchart and Resume sections */
+.section-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.left-section, .right-section {
+  flex: 1;
+}
+
+        
+
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .websites-container {
+                flex-wrap: wrap;
+            }
+
+            .images-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .websites-container, .images-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="name">Websites</h1>
+        </div>
+
+        <div class="websites-container">
+            <!-- Emerald Elegance Inn -->
+            <div class="website-card">
+                <img src="emerald elegance website .jpg" alt="Emerald Elegance Inn" class="website-image">
+                <div class="website-buttons">
+                    <button class="website-btn" onclick="openModal('emeraldPrompt')">Prompt</button>
+                    <button class="website-btn" onclick="openModal('emeraldTools')">Tools</button>
+                    <a href="https://babyfinger03.github.io/emerald-elegance-inn/" target="_blank" class="website-btn">Visit</a>
+                </div>
+            </div>
+
+            <!-- Coin Sphere -->
+            <div class="website-card">
+                <img src="coin sphere website.jpg" alt="Coin Sphere" class="website-image">
+                <div class="website-buttons">
+                    <button class="website-btn" onclick="openModal('coinPrompt')">Prompt</button>
+                    <button class="website-btn" onclick="openModal('coinTools')">Tools</button>
+                    <a href="https://babyfinger03.github.io/Coin-Sphere/" target="_blank" class="website-btn">Visit</a>
+                </div>
+            </div>
+
+            <!-- Track My Fitness -->
+            <div class="website-card">
+                <img src="track my fitness.jpg" alt="Track My Fitness" class="website-image">
+                <div class="website-buttons">
+                    <button class="website-btn" onclick="openModal('fitnessPrompt')">Prompt</button>
+                    <button class="website-btn" onclick="openModal('fitnessTools')">Tools</button>
+                    <a href="https://babyfinger03.github.io/Track-My-Fitness/" target="_blank" class="website-btn">Visit</a>
+                </div>
+            </div>
+
+            <!-- Blueberry Cosmetics -->
+            <div class="website-card">
+                <img src="blueberry cosmetics.jpg" alt="Blueberry Cosmetics" class="website-image">
+                <div class="website-buttons">
+                    <button class="website-btn" onclick="openModal('blueberryPrompt')">Prompt</button>
+                    <button class="website-btn" onclick="openModal('blueberryTools')">Tools</button>
+                    <a href="https://babyfinger03.github.io/Blueberry-Cosmetics-/" target="_blank" class="website-btn">Visit</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="header">
+            <h1 class="name">Ultra Realistic HD Images</h1>
+        </div>
+
+        <div class="images-grid">
+            <!-- Guitar -->
+            <div class="image-card">
+                <img src="guitar.png" alt="Guitar" class="image-card-img">
+                <div class="image-buttons">
+                    <button class="image-btn" onclick="openModal('guitarPrompt')">Prompt</button>
+                    <button class="image-btn" onclick="openModal('guitarTools')">Tools</button>
+                </div>
+            </div>
+
+            <!-- Underwater City -->
+            <div class="image-card">
+                <img src="underwater city.jpeg" alt="Underwater City" class="image-card-img">
+                <div class="image-buttons">
+                    <button class="image-btn" onclick="openModal('underwaterPrompt')">Prompt</button>
+                    <button class="image-btn" onclick="openModal('underwaterTools')">Tools</button>
+                </div>
+            </div>
+
+            <!-- Magic Tree -->
+            <div class="image-card">
+                <img src="magic tree.jpeg" alt="Magic Tree" class="image-card-img">
+                <div class="image-buttons">
+                    <button class="image-btn" onclick="openModal('magicTreePrompt')">Prompt</button>
+                    <button class="image-btn" onclick="openModal('magicTreeTools')">Tools</button>
+                </div>
+            </div>
+
+            <!-- Fairy -->
+            <div class="image-card">
+                <img src="fairy.jpeg" alt="Fairy" class="image-card-img">
+                <div class="image-buttons">
+                    <button class="image-btn" onclick="openModal('fairyPrompt')">Prompt</button>
+                    <button class="image-btn" onclick="openModal('fairyTools')">Tools</button>
+                </div>
+            </div>
+
+            <!-- Magic -->
+            <div class="image-card">
+                <img src="magic.jpeg" alt="Magic" class="image-card-img">
+                <div class="image-buttons">
+                    <button class="image-btn" onclick="openModal('magicPrompt')">Prompt</button>
+                    <button class="image-btn" onclick="openModal('magicTools')">Tools</button>
+                </div>
+            </div>
+
+            <!-- Park -->
+            <div class="image-card">
+                <img src="park.jpeg" alt="Park" class="image-card-img">
+                <div class="image-buttons">
+                    <button class="image-btn" onclick="openModal('parkPrompt')">Prompt</button>
+                    <button class="image-btn" onclick="openModal('parkTools')">Tools</button>
+                </div>
+            </div>
+
+            <!-- Snow Wolf 1 -->
+            <div class="image-card">
+                <img src="snoww wolf.jpeg" alt="Snow Wolf 1" class="image-card-img">
+                <div class="image-buttons">
+                    <button class="image-btn" onclick="openModal('snowWolf1Prompt')">Prompt</button>
+                    <button class="image-btn" onclick="openModal('snowWolf1Tools')">Tools</button>
+                </div>
+            </div>
+
+            <!-- Snow Wolf 2 -->
+            <div class="image-card">
+                <img src="cat.jpeg" alt="Snow Wolf 2" class="image-card-img">
+                <div class="image-buttons">
+                    <button class="image-btn" onclick="openModal('snowWolf2Prompt')">Prompt</button>
+                    <button class="image-btn" onclick="openModal('snowWolf2Tools')">Tools</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals for Websites -->
+    <div id="emeraldPrompt" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('emeraldPrompt')">&times;</span>
+            <h2>Emerald Elegance Inn - Prompt</h2>
+            <p>Suppose you are a professional UI designer. I would like you to generate a website based on luxury hotels for me. The name of the hotel will be Emerald Elegance Inn. There should be a minimum of 8 and a maximum of 15 images on the website (please take images from Unsplash or any free image provider website copy it’s image address and paste it in image source of code img src). The font, website theme, and design should all match and be appropriate for a luxury hotel booking website.
+                This website should include all essential features such as a header, footer, booking tabs, date selection, search functionality, and more—essentially, it should be a fully-fledged website. It must be aesthetically pleasing and look as if it was made by a professional.
+                Please generate the complete code in one block, including HTML, CSS, and JavaScript. Additionally, ensure that the website is responsive for all screen sizes. Please do not provide basic code; I require a comprehensive solution that meets all my requirements. 
+                </p>
+        </div>
+    </div>
+
+    <div id="emeraldTools" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('emeraldTools')">&times;</span>
+            <h2>Emerald Elegance Inn - Tools</h2>
+            <p> Claude 3.5 sonette + visual code studio + github pages ( to generate link )
+            </p>
+        </div>
+    </div>
+
+    <div id="emeraldPrompt" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('emeraldPrompt')">&times;</span>
+            <h2>Emerald Elegance Inn - Prompt</h2>
+            <p>Create a responsive hotel booking website showcasing elegant design, room details, and seamless reservation system.</p>
+        </div>
+    </div>
+
+    <div id="emeraldTools" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('emeraldTools')">&times;</span>
+            <h2>Emerald Elegance Inn - Tools</h2>
+            <p>HTML5, CSS3, JavaScript, Responsive Design, Flexbox, Grid Layout</p>
+        </div>
+    </div>
+
+    <div id="coinPrompt" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('coinPrompt')">&times;</span>
+            <h2>Coin Sphere - Prompt</h2>
+            <p>
+                Suppose you are a professional UI designer. I would like you to generate a website based on crypto currency for me. The name of the site will be CoinSphere There should be a minimum of 8 and a maximum of 15 images on the website (please take images from Unsplash or any free image provider website copy it’s image address and paste it in image source of code img src). The font, website theme, and design should all match and be appropriate for a crypto currency website.
+                This website should include all essential features such as a header, footer, booking tabs, date selection, search functionality, and more—essentially, it should be a fully-fledged website. It must be aesthetically pleasing and look as if it was made by a professional.
+                Please generate the complete code in one block, including HTML, CSS, and JavaScript. Additionally, ensure that the website is responsive for all screen sizes. Please do not provide basic code; I require a comprehensive solution that meets all my requirements.
+                </p>
+        </div>
+    </div>
+
+    <div id="coinTools" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('coinTools')">&times;</span>
+            <h2>Coin Sphere - Tools</h2>
+            <p> Claude 3.5 sonette + visual code studio + github pages ( to generate link )
+            </p>
+        </div>
+    </div>
+
+    <div id="fitnessPrompt" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('fitnessPrompt')">&times;</span>
+            <h2>Track My Fitness - Prompt</h2>
+            <p>Suppose you are a professional UI designer. I would like you to generate a website based on fitness tracking website for me. The name of the site will be Track my fitness . There should be a minimum of 8 and a maximum of 15 images on the website (please take images from Unsplash or any free image provider website copy it’s image address and paste it in image source of code img src). The font, website theme, and design should all match and be appropriate for a Track my fitness website. This website should include all essential features such as a header, footer, booking tabs, date selection, search functionality, and more—essentially, it should be a fully-fledged website. It must be aesthetically pleasing and look as if it was made by a professional. Please generate the complete code in one block, including HTML, CSS, and JavaScript. Additionally, ensure that the website is responsive for all screen sizes. Please do not provide basic code; I require a comprehensive solution that meets all my requirements.
+            </p>
+        </div>
+    </div>
+
+    <div id="fitnessTools" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('fitnessTools')">&times;</span>
+            <h2>Track My Fitness - Tools</h2>
+            <p> Claude 3.5 sonette + visual code studio + github pages ( to generate link )
+            </p>
+        </div>
+    </div>
+
+    <div id="blueberryPrompt" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('blueberryPrompt')">&times;</span>
+            <h2>Blueberry Cosmetics - Prompt</h2>
+            <p>Suppose you are a professional UI designer. I would like you to generate a website based on blueberry based cosmetics product for me. The name of the site will be Blueberry Cosmetics There should be a minimum of 8 and a maximum of 15 images on the website (please take images from Unsplash or any free image provider website copy it’s image address and paste it in image source of code img src). The font, website theme, and design should all match and be appropriate for a blueberry cosmetics website.
+                This website should include all essential features such as a header, footer, booking tabs, date selection, search functionality, and more—essentially, it should be a fully-fledged website. It must be aesthetically pleasing and look as if it was made by a professional. blueberry related theme.
+                Please generate the complete code in one block, including HTML, CSS, and JavaScript. Additionally, ensure that the website is responsive for all screen sizes. Please do not provide basic code; I require a comprehensive solution that meets all my requirements.
+                </p>
+        </div>
+    </div>
+
+    <div id="blueberryTools" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('blueberryTools')">&times;</span>
+            <h2>Blueberry Cosmetics - Tools</h2>
+            <p> Claude 3.5 sonette + visual code studio + github pages ( to generate link )
+            </p>
+        </div>
+    </div>
+
+    <!-- FULL MODALS FOR ALL IMAGES -->
+    <div id="guitarPrompt" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('guitarPrompt')">&times;</span>
+            <h2>Guitar Image - Prompt</h2>
+            <p>
+                An ultra-realistic, high-resolution image with a 16:4 aspect ratio, captured with a Canon EOS R5 camera using an RF 50mm f/1.2L lens. The scene depicts a dark, moody, and aesthetic washroom with black objects, creating a somber atmosphere. In the center, there is a guitar on fire, its flames flickering brightly against the darkness. A man sits in the washroom jacuzzi, gazing intently at the burning guitar, his expression deep and contemplative. Water is cascading down from an overhead shower, adding a dynamic, almost surreal touch to the scene. The overall vibe suggests the philosophical ending of something, invoking introspection. The image should have a cinematic quality and be filled with dark, dramatic lighting. 
+                </p>
+        </div>
+    </div>
+
+    <div id="guitarTools" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('guitarTools')">&times;</span>
+            <h2>Guitar Image - Tools</h2>
+            <p> chat gpt/ claude + Freepik ai image generator + FLUX Dev 
+            </p>
+        </div>
+    </div>
+
+    <div id="underwaterPrompt" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('underwaterPrompt')">&times;</span>
+            <h2>Underwater City - Prompt</h2>
+            <p> An ultra-realistic image in a 16:4 aspect ratio, captured with a Canon EOS R5 camera using an RF 24-70mm f/2.8L lens. The scene is set in a futuristic underwater city, surrounded by vast, deep ocean waters. Giant bioluminescent coral structures glow softly, lighting up the cityscape. Towering skyscrapers made of transparent glass and sleek metallic surfaces rise from the ocean floor, with schools of colorful fish swimming between them. In the foreground, a sleek, silver submarine is drifting near a floating platform, where a small group of people in high-tech suits are engaged in a conversation. Above, the surface of the water is visible, with light filtering through in beams. The overall mood is peaceful and futuristic, with a sense of serenity and technological advancement blending with the natural world.
+
+            </p>
+        </div>
+    </div>
+
+    <div id="underwaterTools" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('underwaterTools')">&times;</span>
+            <h2>Underwater City - Tools</h2>
+            <p> chat gpt/ claude + Freepik ai image generator + FLUX Dev                </p>
+        </div>
+    </div>
+
+    <div id="magicTreePrompt" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('magicTreePrompt')">&times;</span>
+            <h2>Magic Tree - Prompt</h2>
+            <p>An ultra-realistic image in a 16:4 aspect ratio, captured with a Leica M10 camera using a Summilux-M 50mm f/1.4 lens. The scene unfolds at the edge of a serene, tranquil forest, with vibrant, colorful autumn leaves scattered across the ground. A giant tree, its roots sprawling out like a massive network, rises from the center of a tranquil pond. Instead of traditional leaves, the branches of the tree are adorned with thousands of miniature glowing lanterns, casting a soft, golden light over the water. At the base of the tree, a young woman, dressed in flowing robes made of delicate, translucent fabric, stands knee-deep in the pond, her reflection creating a perfect symmetry. In her hands, she holds an open book, from which small birds with glowing wings fly out and soar into the sky. The entire scene is bathed in a surreal, soft light, blending elements of nature, mysticism, and fantasy, with a calm yet enchanting atmosphere. 
+            </p>
+        </div>
+    </div>
+
+    <div id="magicTreeTools" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('magicTreeTools')">&times;</span>
+            <h2>Magic Tree - Tools</h2>
+            <p> chat gpt/ claude + Freepik ai image generator + FLUX Dev 
+            </p>
+        </div>
+    </div>
+
+    <div id="fairyPrompt" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('fairyPrompt')">&times;</span>
+            <h2>Fairy - Prompt</h2>
+            <p>An ultra-realistic image in a 16:4 aspect ratio, captured with a Sony Alpha 7R IV camera using a 50mm f/1.2 lens. The scene is set in an urban park at twilight, with golden hour light casting long shadows. In the foreground, a young woman, dressed in casual attire, is sitting cross-legged on the ground, reading a book. However, instead of normal pages, the book's pages are made of soft, glowing light, with magical words floating above each page. Beside her, a small, glowing, ethereal fox with wings sits playfully, its eyes bright and mischievous. Around them, the park seems to blur between reality and fantasy, with faint silhouettes of mythical creatures peeking through the trees, like a dream crossing over into the real world. The overall scene should feel magical yet grounded, a harmonious mix of the ordinary and the fantastical. ( 2 images ) 
+            </p>
+        </div>
+    </div>
+
+    <div id="fairyTools" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('fairyTools')">&times;</span>
+            <h2>Fairy - Tools</h2>
+            <p> chat gpt/ claude + Freepik ai image generator + FLUX Dev 
+            </p>
+        </div>
+    </div>
+
+    <div id="magicPrompt" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('magicPrompt')">&times;</span>
+            <h2>Magic - Prompt</h2>
+            <p>An ultra-realistic image in a 16:4 aspect ratio, captured with a Sony Alpha 7R IV camera using a 50mm f/1.2 lens. The scene is set in an urban park at twilight, with golden hour light casting long shadows. In the foreground, a young woman, dressed in casual attire, is sitting cross-legged on the ground, reading a book. However, instead of normal pages, the book's pages are made of soft, glowing light, with magical words floating above each page. Beside her, a small, glowing, ethereal fox with wings sits playfully, its eyes bright and mischievous. Around them, the park seems to blur between reality and fantasy, with faint silhouettes of mythical creatures peeking through the trees, like a dream crossing over into the real world. The overall scene should feel magical yet grounded, a harmonious mix of the ordinary and the fantastical. </p>
+        </div>
+    </div>
+
+    <div id="magicTools" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('magicTools')">&times;</span>
+            <h2>Magic - Tools</h2>
+            <p> chat gpt/ claude + Freepik ai image generator + FLUX Dev 
+            </p>
+        </div>
+    </div>
+
+    <div id="parkPrompt" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('parkPrompt')">&times;</span>
+            <h2>Park - Prompt</h2>
+            <p>An ultra-realistic image in a 16:4 aspect ratio, captured with a Canon EOS R5 camera using an RF 70-200mm f/2.8L lens. The scene takes place in a vibrant, lush green garden, full of colorful flowers and bustling with people, including children playing joyfully. In the foreground, an elderly man, a grandpa, is sitting on a park bench, gently placing his big hat on the head of a little girl. The girl is laughing joyfully, her face radiating happiness and excitement. She holds a dog leash in one hand, with a playful dog nearby, engaging with a woman who is interacting with the pet. The image exudes warmth, happiness, and family bonding, with soft sunlight creating a peaceful, cheerful atmosphere.
+
+            </p>
+        </div>
+    </div>
+
+    <div id="parkTools" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('parkTools')">&times;</span>
+            <h2>Park - Tools</h2>
+            <p> chat gpt/ claude + Freepik ai image generator + FLUX Dev 
+            </p>
+        </div>
+    </div>
+
+    <div id="snowWolf1Prompt" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('snowWolf1Prompt')">&times;</span>
+            <h2>Snow Wolf 1 - Prompt</h2>
+            <p>An ultra-realistic image in a 16:4 aspect ratio, captured with a Canon EOS R5 camera using an RF 70-200mm f/2.8L lens. The background features a dark, cold, and foreboding snowy landscape, with heavy snowfall blanketing the area. The sky is pitch black, filled with swirling, violent snowflakes that add to the ominous atmosphere. In the foreground, there is a massive, menacing white snowwolf, its eyes glowing a piercing dark blue, radiating an intense, dangerous aura. The snowwolf stands with one leg on a snowman statue, its head lying beside the body, as though it was created by the wolf itself. The snowwolf is positioned mid-howl, mouth open in a ferocious roar, exposing sharp teeth, with its body large, muscular, and imposing, showcasing intricate details that emphasize its power and ferocity. The dark, stormy sky and the wolf's terrifying presence create a chilling, dangerous atmosphere.
+            </p>
+        </div>
+    </div>
+
+    <div id="snowWolf1Tools" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('snowWolf1Tools')">&times;</span>
+            <h2>Snow Wolf 1 - Tools</h2>
+            <p> chat gpt/ claude + Freepik ai image generator + FLUX Dev 
+            </p>
+        </div>
+    </div>
+
+    <div id="snowWolf2Prompt" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('snowWolf2Prompt')">&times;</span>
+            <h2>Men with cat - Prompt</h2>An ultra-realistic imag
+            <p>An ultra-realistic image captured with a Nikon D850 camera, using a Nikkor 85mm f/1.4 lens. The scene takes place on a dark, crime-ridden roadside with eerie, gritty, dark aesthetics. The environment is filled with shadows and dim lighting, enhancing the mood of suspense. Dead bodies are scattered around, with bloody marks and signs of a brutal fight visible. In the midst of the chaos, only one man remains alive—he’s in his early 20s, handsome, with a muscular, bare-chested body, his face partially obscured by shadows, bruises, and blood splattered on him. He holds a cute, calm cat in his arms, gently feeding it milk from a packet. The cat is drinking the milk from the packet, providing a stark contrast to the surrounding violence. The dark, dramatic lighting amplifies the intense atmosphere, emphasizing the delicate moment amidst the chaos and brutality.
+
+            </p>
+        </div>
+    </div>
+
+    <div id="snowWolf2Tools" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('snowWolf2Tools')">&times;</span>
+            <h2>Men with cat - Tools</h2>
+            <p> chat gpt/ claude + Freepik ai image generator + FLUX Dev 
+            </p>
+        </div>
+    </div>
+
+    <div class="header">
+        <h1 class="name">Flowcharts</h1>
+    </div>
+    
+      <!-- Side-by-side Flowchart and Resume Sections -->
+  <div class="section-container">
+    <!-- Flowchart Section -->
+    <div class="left-section">
+      <h2>Flowcharts</h2>
+      <div class="image-card">
+        <img src="accounting topic flowchart.jpg" alt="Accounting Topic Flowchart" class="image-card-img">
+        <div class="image-buttons">
+          <button class="image-btn" onclick="openModal('accountingFlowchartPrompt')">Prompt</button>
+          <button class="image-btn" onclick="openModal('accountingFlowchartTools')">Tools</button>
+        </div>
+      </div>
+      <div class="image-card">
+        <img src="couloubs law flowchart.jpg" alt="Coulomb's Law Flowchart" class="image-card-img">
+        <div class="image-buttons">
+          <button class="image-btn" onclick="openModal('coulombsLawPrompt')">Prompt</button>
+          <button class="image-btn" onclick="openModal('coulombsLawTools')">Tools</button>
+        </div>
+      </div>
+    </div>
+    <!-- Resume Section -->
+    <div class="right-section">
+      <h2>Resume</h2>
+      <div class="image-card">
+        <img src="prompt resume .jpg" alt="Sample Resume" class="image-card-img">
+        <div class="image-buttons">
+          <button class="image-btn" onclick="openModal('resumePrompt')">Prompt</button>
+          <button class="image-btn" onclick="openModal('resumeTools')">Tools</button>
+          <button class="image-btn" onclick="downloadResume()">Download PDF</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="accountingFlowchartPrompt" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('accountingFlowchartPrompt')">&times;</span>
+      <h2>Accounting Topic Flowchart - Prompt</h2>
+      <p>I want to visually learnThe Process of Accounting and Financial Statements Preparation through flowcharts, as they make understanding easier and more engaging compared to plain text. Can you generate mermaid live editor code to create a flowchart based on the topic I provide? The flowchart should reflect the key concepts and relationships clearly. Here are additional options to customize the flowchart: Content Level: elaborated (to control the depth of detail). Creativity Level: creative (to control the visual appeal). Based on these inputs, generate a flowchart so that I can learn the topic visually and intuitively instead of relying on boring text explanations.
+    </p>
+    </div>
+  </div>
+  <div id="accountingFlowchartTools" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('accountingFlowchartTools')">&times;</span>
+      <h2>Accounting Topic Flowchart - Tools</h2>
+      <p> chat gpt + mermaid editor/Plant text UML editor </p>
+    </div>
+  </div>
+  <div id="resumePrompt" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('resumePrompt')">&times;</span>
+      <h2>Resume Design Prompt</h2>
+      <p>
+        <strong>Generate LaTeX code for my resume.</strong><br>
+        The resume should be ATS-friendly, targeting the company <strong>{ xyz company }</strong>. 
+        (If you want the resume to be sent to all companies, write: <strong>{ I am targeting top MNCs. }</strong>) 
+        There should not be any grammatical mistakes in my resume. It should be eye-catching and clearly showcase all of my work and skills.
+    </p>
+    
+    <p>
+        <strong>My information includes:</strong><br>
+        Name<br>
+        Email<br>
+        Phone<br>
+        Address<br>
+        LinkedIn<br>
+        GitHub<br>
+        Objective<br>
+        Education<br>
+        School<br>
+        College<br>
+        Degree<br>
+        CGPA
+    </p>
+    
+    <p>
+        Projects<br>
+        Skills<br>
+        Internships<br>
+        Experience<br>
+        Certifications<br>
+        Achievements<br>
+        Hobbies<br>
+        Languages<br>
+        DOB (Date of Birth)<br>
+        Photo (Optional)<br>
+        Portfolio<br>
+        References
+    </p>
+    
+    </div>
+  </div>
+  <div id="resumeTools" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('resumeTools')">&times;</span>
+      <h2>Resume Design Tools</h2>
+      <p>github + overleaf latex code editor </p>
+    </div>
+  </div>
+  <div class="new-sections">
+    <!-- Career Quiz Section -->
+    <div class="new-section-card">
+      <h3>Best Career Option Quiz Generator</h3>
+      <button onclick="openModal('careerQuizPrompt')">View Prompt</button>
+    </div>
+    <!-- Problem Solving Section -->
+    <div class="new-section-card">
+      <h3>Problem Solving/Life Hack</h3>
+      <button onclick="openModal('problemSolvingPrompt')">View Prompt</button>
+    </div>
+    <!-- Business Section -->
+    <div class="new-section-card">
+      <h3>Business and Advertising</h3>
+      <button onclick="openModal('businessPrompt')">View Prompt</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modals -->
+<div id="careerQuizPrompt" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal('careerQuizPrompt')">&times;</span>
+    <h2>Best Career Option Quiz Generator - Prompt</h2>
+    <p>
+        <strong>Step 1: Hobbies</strong><br>
+        Ask me my 3 favorite hobbies. Provide 7-8 examples. At least one hobby must be chosen.
+    </p>
+    <p>
+        <strong>Step 2: Favorite Subject</strong><br>
+        Once I select a hobby, ask me about my favorite subject, if there is one. Provide examples as well.
+    </p>
+    <p>
+        <strong>Step 3: Career Goals</strong><br>
+        Then, ask me what my exact goal is (e.g., to become famous, to become rich, to travel the whole world). Provide 10-15 options.
+    </p>
+    <p>
+        <strong>Step 4: Security Preference</strong><br>
+        When I tell you my goal, ask me if I want a secure future or a risky one. By "secure," I mean a government job or things that provide pay and security. By "risky," I mean business and similar ventures.
+    </p>
+    <p>
+        <strong>Step 5: Quiz Preparation</strong><br>
+        After I answer all these questions, prepare a quiz for me with questions that have 5 options each.
+    </p>
+    <p>
+        <strong>Quiz Logic:</strong><br>
+        (Sample numbers used, adjust according to the requirement)<br>
+        The quiz will have 5 options with percentages: 100, 75, 50, 25, and 0.<br>
+        For example, if after talking, the user chooses the subject Math, there is a higher probability of becoming a math teacher. If the user chooses English, there is a higher probability of becoming a Sales and Service Consultant.<br>
+        If the user later chooses traveling abroad as an attraction, there is a higher probability of being a translator or interpreter.<br>
+        The final list of career professions should meet the criteria of the three tabs selected by the user (hobbies, subjects, career objectives, security).
+    </p>
+    <p>
+        <strong>Example Outcome:</strong><br>
+        If the final list (after passing the criteria of the above-mentioned three tabs) has 7 career options, GPT will collect questions for all 7 career options.<br>
+        For example, if one option is “Fitness Instructor,” GPT will list down three skills needed to excel in that field:<br>
+        1. The ability to teach and motivate people.<br>
+        2. A responsible attitude toward health and safety.<br>
+        3. A good level of physical fitness.
+    </p>
+    <p>
+        <strong>Sample Questions:</strong><br>
+        Q1) Do you think you can teach and motivate people well?<br>
+        • Yes, I can do it well (100)<br>
+        • Yes (75)<br>
+        • Maybe, don’t know (50)<br>
+        • No (25)<br>
+        • Not at all (0)
+    </p>
+    <p>
+        Q2) How well do you care about your health?<br>
+        • I take care of it on a daily basis (100)<br>
+        • I focus as much as I need (75)<br>
+        • I don’t focus much on health (50)<br>
+        • I don’t (25)<br>
+        • I don’t take care at all (0)
+    </p>
+    <p>
+        Q3) How fit are you?<br>
+        • My fitness is really good (100)<br>
+        • I think I am quite fit and healthy (75)<br>
+        • I am normal (not too fit nor in bad health) (50)<br>
+        • Not fit (25)<br>
+        • Not at all (bad health) (0)
+    </p>
+    <p>
+        <strong>Final Score Calculation:</strong><br>
+        For example, if the user scores 200 (50 + 75 + 75) out of 300, the final score would be 67%. This means there is a 67% scope in being a good Fitness Instructor.<br>
+        A total of 7 career options will be listed based on the selections made from the three tabs. Each of these careers will have four important skills associated with them, leading to a total of 28 questions for the test. The results will provide recommendations for all seven careers with scope percentages.
+    </p>
+    
+  </div>
+</div>
+<div id="problemSolvingPrompt" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal('problemSolvingPrompt')">&times;</span>
+    <h2>Problem Solving/Life Hack - Prompt</h2>
+    <p>
+        1. I have this problem: {describe the problem}. Can you give me possible solutions and explain the pros and cons of each one? {Optional: mention what kind of solution you want, like a technical or personal solution}. Also, if you were my personal counselor, what would you suggest I do besides just figuring out what's right or wrong?
+    </p>
+    <p>
+        2. I need to complete this task: {describe task}, within {specify time}. Please give me the pros and cons based on how much time it will take. Provide details to help me finish with the least effort, and mention any shortcuts if available.
+    </p>
+    <p>
+        3. Personal Relationship Problem-Solving Prompt: Suppose you are a professional counselor. I will share my issue, and you can ask any follow-up questions to understand it better. Here's my problem: {describe your issue, e.g., had a quarrel with a friend, boss, teacher, partner, family, etc.} I reacted in this way: {describe your reaction, e.g., feeling hurt, angry, depressed, etc.}. Please talk to me as a professional counselor, not just to make me feel good, but to genuinely help me work through this.
+    </p>
+    
+  </div>
+</div>
+<div id="businessPrompt" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal('businessPrompt')">&times;</span>
+    <h2>Business and Advertising - Prompt</h2>
+    <p>
+        Ad Script Generator Prompt: Suppose you are a professional marketing expert. My product is {describe product}, and my company focuses on {describe company and its mission}. I would like you to generate an ad script to market this product. Please include the product description, target audience, and unique selling points (USP). Additionally, specify the type of ad (e.g., animation, real people filming, TV ad, Instagram reel, etc.) and the time limit (optional). Please create the script for the ad based on these details.
+    </p>
+    <p>
+        Investor Pitch Prompt: Suppose you are a tough but highly professional investor who primarily invests in IT startups and innovations. My startup idea is {describe your idea}, and my revenue model is {explain revenue model and other relevant details}. Now, as an investor, I am pitching my business to you. Ask me any questions you have, and then let me know if you would invest in it or not. Please have a proper, realistic conversation.
+    </p>
+    <p>
+        Redefine Startup Idea Prompt: I want to explain my startup idea in a simpler way. My idea is {describe your startup idea}. Can you help me rewrite it using easy-to-understand language, making it clear and simple for anyone to understand, even if they don't know much about the industry?
+    </p>
+    
+  </div>
+</div>
+
+
+  <script>
+    function openModal(modalId) {
+        try {
+            const modal = document.getElementById(modalId);
+            if (!modal) {
+                throw new Error(`Modal with id ${modalId} not found`);
+            }
+            modal.style.display = 'flex';
+        } catch (error) {
+            console.error('Error opening modal:', error);
+            alert('Unable to open the modal. Please try again.');
+        }
+    }
+
+    function closeModal(modalId) {
+        try {
+            const modal = document.getElementById(modalId);
+            if (!modal) {
+                throw new Error(`Modal with id ${modalId} not found`);
+            }
+            modal.style.display = 'none';
+        } catch (error) {
+            console.error('Error closing modal:', error);
+            alert('Unable to close the modal. Please try again.');
+        }
+    }
+
+    // Close modal if clicked outside of content
+    window.addEventListener('click', function (event) {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+
+    function downloadResume() {
+        const link = document.createElement('a');
+        link.href = 'Vik_S_resume_sample.pdf';
+        link.download = 'Vik_S_resume_sample.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+
+
+</body>
+</html>
